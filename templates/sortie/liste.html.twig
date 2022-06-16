@@ -1,0 +1,109 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Gestion des sorties{% endblock %}
+
+{% block body %}
+                <div class="orders">
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="row">
+                                <div class="col-lg-6 col-xl-12">
+                                    <div class="card-header bg-dark text-light">
+                                        Formulaire de gestion des Ventes 
+                                    </div>
+                                    <div class="card br-0">
+                                        <div class="card-body">
+                                        {% if error_message is defined %} 
+                                            <div class="alert alert-danger alerteSaisie">{{error_message}}</div>
+                                        {% endif %}
+                                            {{ form(form) }}
+                                        </div>
+                                    </div><!-- /.card -->
+                                </div>
+                                <div class="col-lg-6 col-xl-12">
+                                    <div class="card-header bg-dark text-light">
+                                        Statisique des Entrés 
+                                    </div>
+                                    <div class="card br-0">
+                                        <div class="card-body">
+                                            <div class="chart-container ov-h">
+                                                <div id="flotPie1" class="float-chart"></div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.card -->
+                                </div>
+
+                                <div class="col-lg-6 col-xl-12">
+                                    <div class="card bg-flat-color-3  ">
+                                        {# <div class="card-body">
+                                            <h4 class="card-title m-0  white-color ">August 2018</h4>
+                                        </div>
+                                         <div class="card-body">
+                                             <div id="flotLine5" class="flot-line"></div>
+                                         </div> #}
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- /.col-md-4 -->
+                        <div class="col-xl-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">Liste des produits </h4>
+                                </div>
+                                <div class="card-body--">
+                                    <div class="  ">
+                                        <table class="table table-dark table-hover text-white">
+                                            <thead>
+                                                <tr>
+                                                    <th class="serial">#</th>
+                                                    <th class="avatar">Avatar</th>
+                                                    <th>ID</th>
+                                                    <th>Date</th>
+                                                    <th>Quantite</th>
+                                                    <th>Produit</th>
+                                                    <th>Status Entree</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for s in sortie %}
+                                                <tr>
+                                                    <td class="serial">1.</td>
+                                                    <td class="avatar">
+                                                        <div class="round-img">
+                                                            <a href="#"><img class="rounded-circle" src="{{asset('template/images/avatar/1.jpg')}}" alt=""></a>
+                                                        </div>
+                                                    </td>
+                                                    <td> #{{ s.id }}  </td>
+                                                    <td><span class="name">  {{ s.dateS | date('d/m/y') }}</span></td>
+                                                    <td><span class="count"> {{ s.qteS }} </span></td>
+                                                    <td><span class="name"> {{ s.produit }} </span></td>
+                                                    <td>
+                                                        <span class="name">
+                                                            <div class="btn-group">
+                                                                <div class="btn-group">
+                                                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                                        Sortie 
+                                                                    </button>
+                                                                    <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Afficher</a>
+                                                                    <a class="dropdown-item" href="#">Masquer</a>
+                                                                    <a class="dropdown-item" href="#">Suprimer</a>
+                                                                    <a class="dropdown-item" href="#">Editer</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                    </div> <!-- /.table-stats -->
+                                </div>
+                            </div> <!-- /.card -->
+                        </div>  <!-- /.col-lg-8 -->
+                    </div>
+                </div>
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% set i = 0%}
+{% for p in Produit %}
+	{% set i = i + 1 %}
+	<tr>
+		<td class="serial listeNbr">{{i}}</td>
+		<td class="avatar">
+			<div class="round-img">
+				<a href="#"><img class="rounded-circle" src="{{asset('template/images/avatar/1.jpg')}}" alt=""></a>
+			</div>
+		</td>
+		<td>
+			#{{ p.id }}
+		</td>
+		<td>
+			<span class="name valeur{{i}}">
+				{{ p.lebelle }}
+			</span>
+		</td>
+		<td>
+			<span class="count valeur{{i}}">
+				{{ p.qtStock }}
+			</span>
+		</td>
+		<td>
+			<div class="btn-group">
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+						Produit
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item masquer valeur{{i}}" href="#">Masquer
+							<i class="menu-icon fa fa-eye-slash" style='font-size:18px;color:red'></i>
+						</a>
+						<a class="dropdown-item delete valeur{{i}}" href="{{ path('produit_delete', {'id' : p.id}) }}">Delete</a>
+						<a class="dropdown-item edite valeur{{i}}" href="{{path('produit_update', {'id' : p.id}) }}">Editer</a>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+{% endfor %}

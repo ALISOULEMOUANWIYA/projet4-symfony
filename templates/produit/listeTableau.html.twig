@@ -1,0 +1,129 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Gestion des Produit
+{% endblock %}
+{% block javascripts %}
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="{#{asset('template/assets/js/controlProduit.js')}#}"></script>
+{% endblock %}
+
+{% block body %}
+	<div class="orders ">
+		<div class="row">
+			<div class="col-xl-4">
+				<div class="row">
+					<div class="col-lg-6 col-xl-12">
+						<div class="card-header bg-dark text-light">
+							Gestion des Ventes
+						</div>
+						<div class="card br-0">
+							<div class="card-body">
+								{#{ form(form) }#}
+								{{ form_start(form,{'attr': {'class': 'formhorizontal','data-parsley-validate':''}}) }}
+								<br>
+								{{ form_end(form) }}
+							</div>
+						</div>
+						<!-- /.card -->
+					</div>
+				</div>
+			</div>
+			<!-- /.col-md-4 -->
+			<div class="col-xl-8">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-4">
+								<h4 class=" box-title">Liste des produits</h4>
+							</div>
+							<div class="col-sm-8">
+								<div class="row">
+									<div class="col-sm-12">
+										<button class="btn btn-primary">
+											<i class="menu-icon fa fa-eye"></i>
+										</button>
+										<button class="btn btn-warning">
+											<i class="menu-icon fa fa-check-circle"></i>
+										</button>
+										<button class="btn btn-info">
+											<i class="menu-icon fa fa-print"></i>
+										</button>
+										<button class="btn btn-danger">
+											<i class="menu-icon fa fa-trash"></i>
+										</button>
+										<button class="btn btn-dark">
+											<i class="menu-icon fa fa-trash"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-body--">
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
+							<table class="table table-dark table-striped mb-0">
+
+								<thead>
+									<tr>
+										<th class="serial">#</th>
+										<th class="avatar">Avatar</th>
+										<th>ID</th>
+										<th>Libelle</th>
+										<th>Quantite</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody class="tableauListe">
+									{% set i = 0%}
+										{% for p in produit %}
+											{% set i = i + 1 %}
+											<tr>
+												<td class="serial listeNbr">{{i}}</td>
+												<td class="avatar">
+													<div class="round-img">
+														<a href="#"><img class="rounded-circle" src="{{asset('template/images/avatar/1.jpg')}}" alt=""></a>
+													</div>
+												</td>
+												<td>
+													#{{ p.id }}
+												</td>
+												<td>
+													<span class="name valeur{{i}}">
+														{{ p.lebelle }}
+													</span>
+												</td>
+												<td>
+													<span class="count valeur{{i}}">
+														{{ p.qtStock }}
+													</span>
+												</td>
+												<td>
+													<div class="btn-group">
+														<div class="btn-group">
+															<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+																Produit
+															</button>
+															<div class="dropdown-menu">
+																<a class="dropdown-item masquer valeur{{i}}" href="#">Masquer
+																	<i class="menu-icon fa fa-eye-slash" style='font-size:18px;color:red'></i>
+																</a>
+																<a class="dropdown-item delete valeur{{i}}" href="{{ path('produit_delete', {'id' : p.id}) }}">Delete</a>
+																<a class="dropdown-item edite  valeur{{i}}" href="{{ path('produit_edite', {'id' : p.id}) }}">Editer</a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										{% endfor %}
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-stats -->
+					</div>
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col-lg-8 -->
+		</div>
+	</div>
+{% endblock %}
